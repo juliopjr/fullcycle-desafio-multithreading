@@ -1,5 +1,9 @@
 package entities
 
+func NewBrasilAPI(cep string) *brasilAPI {
+	return &brasilAPI{Cep: cep}
+}
+
 type brasilAPI struct {
 	Cep          string `json:"cep"`
 	State        string `json:"state"`
@@ -9,4 +13,6 @@ type brasilAPI struct {
 	Service      string `json:"service"`
 }
 
-// https://brasilapi.com.br/api/cep/v1/01153000 + cep
+func (e *brasilAPI) GetURL() string {
+	return "https://brasilapi.com.br/api/cep/v1/" + e.Cep
+}
