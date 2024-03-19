@@ -1,6 +1,10 @@
 package entities
 
-type ViaCEP struct {
+func NewViaCEP(cep string) *viaCEP {
+	return &viaCEP{Cep: cep}
+}
+
+type viaCEP struct {
 	Cep         string `json:"cep"`
 	Logradouro  string `json:"logradouro"`
 	Complemento string `json:"complemento"`
@@ -13,4 +17,6 @@ type ViaCEP struct {
 	Siafi       string `json:"siafi"`
 }
 
-// http://viacep.com.br/ws/" + cep + "/json/
+func (e *viaCEP) GetURL() string {
+	return "http://viacep.com.br/ws/" + e.Cep + "/json/"
+}
